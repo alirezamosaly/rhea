@@ -1,0 +1,226 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Organize Rhea assets",
+			"type": "shell",
+			"command": "cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"mkdir assets\\images\\logos assets\\images\\products assets\\images\\renders assets\\images\\design && move /y \"LOGO(BILD).png\" assets\\images\\logos\\rhea-logo-mark.png && move /y \"LOGO(GESAMT).png\" assets\\images\\logos\\rhea-logo-full.png && move /y \"LOGO(Transparent-SCHRIFT).png\" assets\\images\\logos\\rhea-logo-transparent.png && move /y \"Flasche_schwarz.png\" assets\\images\\products\\rhea-bottle-black-main.png && move /y \"Flasche_schwarz (1).png\" assets\\images\\products\\rhea-bottle-black-detail.png && move /y \"Alle einsichten.png\" assets\\images\\design\\rhea-design-overviews.png && move /y \"UML_Rhea.png\" assets\\images\\design\\rhea-uml.png && move /y \"Gemini_Generated_Image_z50ej3z50ej3z50e.png\" assets\\images\\renders\\rhea-bottle-render-01.png && move /y \"Gemini_Generated_Image_d0ktj5d0ktj5d0kt_nobg_preview_photiu.ai.png\" assets\\images\\renders\\rhea-bottle-lifestyle-clean.png && move /y \"Gemini_Generated_Image_d0ktj5d0ktj5d0kt.jfif\" assets\\images\\renders\\rhea-bottle-lifestyle-01.jfif && move /y \"Gemini_Generated_Image_u8fo40u8fo40u8fo.png\" assets\\images\\renders\\rhea-bottle-render-02.png && move /y \"Gemini_Generated_Image_u8fo40u8fo40u8fo.jfif\" assets\\images\\renders\\rhea-bottle-render-02.jfif && move /y \"Gemini_Generated_Image_ujc3duujc3duujc3.jfif\" assets\\images\\renders\\rhea-bottle-render-03.jfif && move /y \"Gemini_Generated_Image_z50ej3z50ej3z50e.jfif\" assets\\images\\renders\\rhea-bottle-render-01.jfif"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Finish Rhea asset cleanup",
+			"type": "process",
+			"command": "powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"$root = (Get-Location).Path; Set-Location $root; New-Item -ItemType Directory -Force -Path 'assets\\images\\products','assets\\images\\renders','assets\\images\\design' | Out-Null; Move-Item -LiteralPath 'Flasche_schwarz (1).png' -Destination 'assets\\images\\products\\rhea-bottle-black-detail.png' -Force; Move-Item -LiteralPath 'Alle einsichten.png' -Destination 'assets\\images\\design\\rhea-design-overviews.png' -Force; Move-Item -LiteralPath 'Gemini_Generated_Image_z50ej3z50ej3z50e.png' -Destination 'assets\\images\\renders\\rhea-bottle-render-01.png' -Force; Move-Item -LiteralPath 'Gemini_Generated_Image_d0ktj5d0ktj5d0kt_nobg_preview_photiu.ai.png' -Destination 'assets\\images\\renders\\rhea-bottle-lifestyle-clean.png' -Force; Remove-Item -LiteralPath 'Gemini_Generated_Image_z50ej3z50ej3z50e.jfif','Gemini_Generated_Image_ujc3duujc3duujc3.jfif','Gemini_Generated_Image_u8fo40u8fo40u8fo.png','Gemini_Generated_Image_u8fo40u8fo40u8fo.jfif','Gemini_Generated_Image_d0ktj5d0ktj5d0kt.jfif','UML_Rhea.png' -Force; Remove-Item -LiteralPath 'assets\\images\\logos\\rhea-logo-mark.png','assets\\images\\logos\\rhea-logo-full.png' -Force"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Firebase login",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"firebase-tools",
+				"login"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Firebase deploy",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"firebase-tools",
+				"deploy",
+				"--only",
+				"hosting",
+				"--project",
+				"rhea-119bb"
+			],
+			"problemMatcher": []
+		},
+		{
+			"label": "Install Node.js",
+			"type": "shell",
+			"command": "winget",
+			"args": [
+				"install",
+				"--id",
+				"OpenJS.NodeJS.LTS",
+				"--exact",
+				"--accept-package-agreements",
+				"--accept-source-agreements"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase login direct",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npx.cmd",
+			"args": [
+				"firebase-tools",
+				"login"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase login automatic",
+			"type": "shell",
+			"command": "C:\\Program Files\\nodejs\\npx.cmd",
+			"args": [
+				"--yes",
+				"firebase-tools",
+				"login"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase login with Node path",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npx --yes firebase-tools login"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase deploy Rhea",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npx --yes firebase-tools deploy --only hosting --project rhea-119bb"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase deploy debug",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npx --yes firebase-tools deploy --only hosting --project rhea-119bb --debug"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Install Firebase tools globally",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && npm install -g firebase-tools"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase deploy global",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && firebase deploy --only hosting --project rhea-119bb"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase deploy direct",
+			"type": "shell",
+			"command": "C:\\Users\\alire\\AppData\\Roaming\\npm\\firebase.cmd",
+			"args": [
+				"deploy",
+				"--only",
+				"hosting",
+				"--project",
+				"rhea-119bb"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Firebase deploy direct with path",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;C:\\Users\\alire\\AppData\\Roaming\\npm;%PATH%\" && firebase.cmd deploy --only hosting --project rhea-119bb"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Verify Firebase hosting",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+			"args": [
+				"-NoProfile",
+				"-Command",
+				"$urls=@('https://rhea-119bb.web.app/','https://rhea-119bb.web.app/app','https://rhea-119bb.web.app/shop','https://rhea-119bb.web.app/legal'); foreach($u in $urls){try{$r=Invoke-WebRequest -Uri $u -UseBasicParsing -MaximumRedirection 5; Write-Output \"$($r.StatusCode) $u $($r.Headers['Content-Type'])\"}catch{Write-Output \"ERR $u $($_.Exception.Message)\"}}"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Check JavaScript syntax",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;%PATH%\" && node --check assets\\js\\product.js && node --check assets\\js\\legal-consent.js"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"label": "Deploy Rhea website",
+			"type": "shell",
+			"command": "C:\\Windows\\System32\\cmd.exe",
+			"args": [
+				"/d",
+				"/c",
+				"set \"PATH=C:\\Program Files\\nodejs;C:\\Users\\alire\\AppData\\Roaming\\npm;%PATH%\" && firebase.cmd deploy --only hosting --project rhea-119bb"
+			],
+			"isBackground": false,
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

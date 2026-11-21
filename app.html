@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f2">
+    <meta name="description" content="Dein sanfter Trinkbegleiter für dich und deine smarte Trinkflasche.">
+    <title>Rhea App — dein Trinkbegleiter</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Hauptnavigation">
+        <a class="brand" href="#" aria-label="Rhea – Startseite">
+          <img class="brand-logo" src="assets/images/logos/rhea-logo-transparent.png" alt="Rhea">
+        </a>
+        <div class="nav-label">DEIN BEREICH</div>
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="today"><span class="nav-icon">◷</span> Heute</button>
+          <button class="nav-item" data-view="insights"><span class="nav-icon">▥</span> Einblicke</button>
+          <button class="nav-item" data-view="community"><span class="nav-icon">♡</span> Community</button>
+        </nav>
+        <div class="sidebar-spacer"></div>
+        <div class="sidebar-note">
+          <div class="note-leaf">✳</div>
+          <p>Kleine Schlucke,<br>große Wirkung.</p>
+          <span>Deine tägliche Erinnerung</span>
+        </div>
+        <button class="nav-item settings-link" id="open-settings"><span class="nav-icon">⚙</span> Einstellungen</button>
+        <div class="profile">
+          <div class="avatar">J</div>
+          <div class="profile-copy"><strong>Jamie Parker</strong><span>Dein Wohlfühlbereich</span></div>
+          <span class="profile-more">···</span>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand"><img class="mobile-brand-logo" src="assets/images/logos/rhea-logo-transparent.png" alt="Rhea"></div>
+          <div class="breadcrumb">Dein Bereich <span>/</span> <strong id="page-breadcrumb">Heute</strong></div>
+          <div class="top-actions">
+            <span class="today-date" id="today-date"></span>
+            <button class="icon-button" id="open-settings-top" aria-label="Einstellungen öffnen" title="Einstellungen">⚙</button>
+          </div>
+        </header>
+
+        <section class="view active" id="today-view">
+          <div class="welcome-row">
+            <div>
+              <div class="eyebrow"><span class="sparkle">✳</span> DEIN TÄGLICHER NEUSTART</div>
+              <h1>Rhea ist die beste<br class="desktop-break"> <span>Smartflasche.</span></h1>
+              <p class="welcome-subtitle">Hör auf deinen Körper. Wir behalten die kleinen Dinge im Blick.</p>
+            </div>
+            <div class="day-chip"><span class="day-sun">☼</span><span><strong id="weekday-label">Ein neuer Anfang</strong><small>Schluck für Schluck</small></span></div>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="card hydration-card">
+              <div class="card-heading">
+                <div><div class="eyebrow muted">DEIN TRINKFORTSCHRITT</div><h2>Dein heutiger Fortschritt</h2></div>
+                <button class="text-button" id="edit-goal">Ziel ändern <span>↗</span></button>
+              </div>
+              <div class="progress-layout">
+                <div class="progress-ring" id="progress-ring" role="img" aria-label="0 Prozent deines täglichen Trinkziels">
+                  <div class="ring-inner"><span class="water-drop">⌄</span><strong id="total-litres">0,0</strong><span class="ring-unit">Liter</span></div>
+                </div>
+                <div class="bottle-mockup" role="img" aria-label="Digitale Darstellung der Rhea Smartflasche">
+                  <span class="bottle-water-level" id="bottle-water-level" aria-hidden="true"></span>
+                  <img src="assets/images/products/rhea-bottle-black-detail.png" alt="">
+                </div>
+                <div class="progress-copy">
+                  <div class="progress-percent"><strong id="progress-percent">0%</strong><span>deines Tagesziels</span></div>
+                  <p>Noch <strong id="remaining-amount">2.000 ml</strong>. Du machst das toll – ganz in deinem Tempo.</p>
+                  <div class="progress-track"><span id="progress-bar"></span></div>
+                  <div class="progress-foot"><span>0 ml</span><span id="goal-label">Ziel: 2.000 ml</span></div>
+                </div>
+              </div>
+              <div class="card-divider"></div>
+              <div class="log-heading"><div><h3>Getränk eintragen</h3><span>Jeder Schluck zählt.</span></div><span class="log-plus">+</span></div>
+              <div class="quick-add">
+                <button class="quick-add-button" data-amount="150"><span class="glass glass-small">▱</span><strong>150 ml</strong><small>Kleines Glas</small></button>
+                <button class="quick-add-button" data-amount="250"><span class="glass">▱</span><strong>250 ml</strong><small>Glas</small></button>
+                <button class="quick-add-button" data-amount="500"><span class="glass glass-large">▱</span><strong>500 ml</strong><small>Flasche</small></button>
+                <button class="quick-add-button custom-add" id="custom-drink"><span class="custom-plus">＋</span><strong>Eigene Menge</strong><small>Menge wählen</small></button>
+              </div>
+              <div class="last-drink-row"><span><span class="tiny-dot"></span><span id="last-drink-text">Noch keine Getränke eingetragen</span></span><button id="undo-drink" class="undo-button" hidden>Rückgängig</button></div>
+            </section>
+
+            <section class="card flower-card">
+              <div class="flower-card-top"><div><div class="eyebrow muted">DEINE KLEINE BEGLEITERIN</div><h2>Das ist Poppy</h2></div><button class="more-button" aria-label="Infos zur Pflanze">···</button></div>
+              <div class="plant-stage" id="plant-stage">
+                <div class="plant-sun"></div><div class="plant-cloud cloud-one"></div><div class="plant-cloud cloud-two"></div>
+                <svg class="poppy-illustration" id="poppy" viewBox="0 0 220 205" role="img" aria-label="Blume Poppy wartet auf einen Schluck">
+                  <ellipse cx="110" cy="189" rx="72" ry="9" fill="#D9E5CF"/>
+                  <path d="M110 179c0-31 1-59 0-88" stroke="#71936B" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M109 139c-21-26-41-20-45-11 12 20 25 25 45 21m2-18c13-23 31-23 37-15-6 18-20 27-38 27" fill="#9CB68A" stroke="#71936B" stroke-width="3" stroke-linejoin="round"/>
+                  <path d="M110 89c-18-8-28-24-17-35 7-7 15-1 19 6 2-17 10-27 21-21 11 6 5 19 0 27 18-9 31-5 30 7-1 11-15 14-27 13 14 12 16 24 6 30-10 6-20-4-27-15-2 17-11 25-21 20-10-5-6-18 2-30-17 7-30 3-29-8 1-10 13-13 29-11Z" fill="#ED8B80"/>
+                  <path d="M110 89c-11-9-9-23 1-25 11-1 17 10 14 19-2 8-8 12-15 13" fill="#E8B75D"/>
+                  <circle cx="109" cy="84" r="2" fill="#916448"/><circle cx="120" cy="84" r="2" fill="#916448"/>
+                  <path d="M111 90q4 4 8 0" stroke="#916448" stroke-width="2" fill="none" stroke-linecap="round"/>
+                  <path d="M83 183h55" stroke="#B26E55" stroke-width="7" stroke-linecap="round"/>
+                </svg>
+                <div class="plant-pot"></div>
+                <div class="plant-status-pill" id="plant-status-pill"><span>✿</span> Wartet aufs Aufblühen</div>
+              </div>
+              <div class="plant-message"><div class="plant-mood" id="plant-mood">☁</div><div><strong id="plant-status">Poppy wird wach</strong><p id="plant-message">Ein paar Schlucke helfen deiner kleinen Blume beim Wachsen.</p></div></div>
+              <div class="plant-footer"><span><span class="plant-heart">♥</span> Mit jedem Schluck kümmerst du dich um Poppy</span><button class="text-button" id="plant-info">So funktioniert’s <span>↗</span></button></div>
+            </section>
+          </div>
+
+          <div class="lower-grid">
+            <section class="card activity-card">
+              <div class="card-heading"><div><div class="eyebrow muted">DEIN TAG IN SCHLUCKEN</div><h2>Deine heutige Aktivität</h2></div><span class="activity-date" id="activity-date"></span></div>
+              <div class="timeline" id="timeline"><div class="empty-timeline"><span>◷</span><p>Dein erster Schluck erscheint hier.</p></div></div>
+            </section>
+            <section class="card streak-card">
+              <div class="streak-top"><div><div class="eyebrow muted">DU BIST FÜR DICH DA</div><h2>Dein Rhythmus</h2></div><span class="streak-icon">✳</span></div>
+              <div class="streak-count"><strong id="streak-count">0</strong><span>Tage in Folge</span></div>
+              <p id="streak-description">Erreiche dein Tagesziel und starte deine Serie. Du schaffst das!</p>
+              <div class="week-dots" id="week-dots"></div>
+              <div class="streak-footer"><span>Dranbleiben statt perfekt sein.</span><span class="streak-heart">♥</span></div>
+            </section>
+          </div>
+          <div class="achievement-toast" id="achievement-toast" role="status" aria-live="polite"></div>
+        </section>
+
+        <section class="view insights-view" id="insights-view" hidden>
+          <div class="welcome-row insights-welcome">
+            <div>            <div class="eyebrow"><span class="sparkle">✳</span> DAS GROSSE GANZE</div><h1>Dein Fortschritt,<br><span>in deinem Tempo.</span></h1><p class="welcome-subtitle">Ein kleiner Blick auf all das Gute, das du schon geschafft hast.</p></div>
+            <div class="day-chip"><span class="day-sun">↗</span><span><strong>Jeder Schluck zählt</strong><small>Deine persönlichen Einblicke</small></span></div>
+          </div>
+          <div class="insights-stats">
+            <article class="card stat-card"><div class="stat-icon peach">⌁</div><span>Diese Woche</span><strong id="week-average">0 <small>ml/Tag</small></strong><p>Durchschnitt pro Tag</p></article>
+            <article class="card stat-card"><div class="stat-icon sage">↗</div><span>Geschafft</span><strong id="week-goal-days">0 <small>Tage</small></strong><p>Tagesziel erreicht</p></article>
+            <article class="card stat-card"><div class="stat-icon yellow">✳</div><span>Dein längster Lauf</span><strong id="longest-streak">0 <small>Tage</small></strong><p>Trink-Serie</p></article>
+          </div>
+          <section class="card week-card">
+            <div class="card-heading"><div><div class="eyebrow muted">EIN KLEINER RÜCKBLICK</div><h2>Deine letzten 7 Tage</h2></div><span class="chart-legend"><span></span> Wasser</span></div>
+            <div class="week-chart" id="week-chart"></div>
+            <div class="chart-scale"><span>0 ml</span><span id="chart-goal-label">Tagesziel · 2.000 ml</span><span id="chart-max-label">2.500 ml</span></div>
+          </section>
+          <div class="insights-bottom">
+            <section class="card achievements-card"><div class="card-heading"><div><div class="eyebrow muted">KLEINE ERFOLGE</div><h2>Deine Erfolge</h2></div><span class="achievement-count" id="achievement-count">0 erreicht</span></div><div id="achievements-list" class="achievements-list"></div></section>
+            <section class="card device-card"><div class="device-icon">◉</div><div><div class="eyebrow muted">DEINE SMARTE TRINKFLASCHE</div><h2 id="device-title">Flaschen-Demomodus</h2><p id="device-description">Tippe auf „Schluck eintragen“, um 250 ml hinzuzufügen.</p></div><button class="button-secondary" id="bottle-sip">Schluck eintragen <span>＋</span></button><span class="demo-label">DEMO</span></section>
+          </div>
+          <div class="privacy-note"><span>⌂</span> Deine Trinkdaten bleiben auf diesem Gerät. Rhea ist kein Medizinprodukt – dein Trinkziel dient nur zur Orientierung und ist kein medizinischer Rat.</div>
+        </section>
+
+        <section class="view community-view" id="community-view" hidden>
+          <div class="welcome-row">
+            <div>
+              <div class="eyebrow"><span class="sparkle">✳</span> DEIN PLATZ ZUM TEILEN</div>
+              <h1>Gemeinsam <span>dranbleiben.</span></h1>
+              <p class="welcome-subtitle">Teile kleine Erfolge und lass dich gegenseitig motivieren.</p>
+            </div>
+          </div>
+          <div class="community-layout">
+            <div class="community-main">
+              <section class="card composer-card">
+                <div class="composer-heading">
+                  <div class="avatar">J</div>
+                  <div><strong>Jamie Parker</strong><span>Was möchtest du teilen?</span></div>
+                </div>
+                <form id="community-form">
+                  <label class="sr-only" for="community-message">Dein Beitrag</label>
+                  <textarea id="community-message" maxlength="280" placeholder="Ein kleiner Erfolg, ein motivierender Gedanke …" required></textarea>
+                  <div class="composer-footer">
+                    <label class="share-progress"><input id="share-progress" type="checkbox"><span>Mein heutiges Trinkziel teilen</span></label>
+                    <div class="composer-submit"><span id="community-char-count">0/280</span><button class="button-primary" type="submit">Beitrag teilen <span>↑</span></button></div>
+                  </div>
+                </form>
+              </section>
+              <div class="feed-heading"><div><div class="eyebrow muted">DEIN COMMUNITY-FEED</div><h2>Ein bisschen Inspiration</h2></div><span class="feed-count">Beiträge &amp; Ideen</span></div>
+              <div class="community-feed" id="community-feed" aria-live="polite"></div>
+            </div>
+            <aside class="card community-note">
+              <div class="community-note-icon">⌂</div>
+              <div class="eyebrow muted">GUT ZU WISSEN</div>
+              <h2>Dein Bereich bleibt privat.</h2>
+              <p>Beiträge und Reaktionen werden nur in diesem Browser gespeichert. Sie sind noch nicht öffentlich und werden nicht mit anderen Personen synchronisiert.</p>
+              <div class="privacy-chip"><span>●</span> Nur auf diesem Gerät</div>
+              <div class="community-note-divider"></div>
+              <div class="note-tip"><span>✳</span><p>Ein nettes Wort kann jemandem den Tag verschönern. Teile deine Fortschritte ganz ohne Druck.</p></div>
+            </aside>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog class="modal" id="goal-modal">
+      <form method="dialog" class="modal-content" id="goal-form">
+        <button class="modal-close" aria-label="Schließen">×</button><div class="modal-icon">↗</div><div class="eyebrow muted">DEIN TÄGLICHES ZIEL</div><h2>Lege dein Trinkziel fest</h2><p>Wähle eine Menge, die sich für dich richtig anfühlt. Du kannst sie jederzeit ändern.</p>
+        <label class="field-label" for="goal-input">Tagesziel <span>Milliliter</span></label>
+        <div class="input-wrap"><input id="goal-input" type="number" min="250" max="6000" step="50" value="2000" required><span>ml</span></div>
+        <button class="button-primary" id="save-goal" value="save">Ziel speichern <span>→</span></button>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="custom-modal">
+      <form method="dialog" class="modal-content" id="custom-form">
+        <button class="modal-close" aria-label="Schließen">×</button><div class="modal-icon peach-icon">＋</div><div class="eyebrow muted">EINEN SCHLUCK EINTRAGEN</div><h2>Wie viel hast du getrunken?</h2><p>Jede Menge zählt. Trag sie ein – wir kümmern uns um den Rest.</p>
+        <label class="field-label" for="custom-input">Getrunkene Menge <span>Milliliter</span></label>
+        <div class="input-wrap"><input id="custom-input" type="number" min="1" max="3000" step="1" placeholder="z. B. 200" required><span>ml</span></div>
+        <button class="button-primary" id="save-custom" value="save">Zum Tag hinzufügen <span>→</span></button>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="settings-modal">
+      <form method="dialog" class="modal-content settings-content">
+        <button class="modal-close" aria-label="Schließen">×</button><div class="eyebrow muted">MACH ES ZU DEINEM</div><h2>Deine Einstellungen</h2><p>Eine sanfte Routine, die zu dir passt.</p>
+        <div class="setting-row"><div><strong>Trinkerinnerungen</strong><span>Eine Erinnerung im Browser, solange Rhea geöffnet ist</span></div><label class="switch"><input id="reminder-toggle" type="checkbox" aria-label="Trinkerinnerungen aktivieren"><span class="switch-slider"></span></label></div>
+        <div class="setting-row"><div><strong>Erinnerungsintervall</strong><span>Wie oft sollen wir dich erinnern?</span></div><select id="reminder-frequency"><option value="60">Jede Stunde</option><option value="90">Alle 90 Minuten</option><option value="120">Alle 2 Stunden</option></select></div>
+        <div class="setting-row"><div><strong>Blumenbegleiterin</strong><span>Poppy wächst mit deinem Trinkfortschritt</span></div><label class="switch"><input id="flower-toggle" type="checkbox" aria-label="Blumenbegleiterin aktivieren" checked><span class="switch-slider"></span></label></div>
+        <div class="setting-row"><div><strong>Community</strong><span>Deine Beiträge bleiben auf diesem Gerät.</span></div><span class="local-setting-label">LOKAL</span></div>
+        <div class="settings-actions"><button class="button-secondary" type="button" id="reset-data">Meine Daten zurücksetzen</button><button class="button-primary" id="save-settings" value="save">Fertig <span>→</span></button></div>
+      </form>
+    </dialog>
+
+    <dialog class="modal" id="info-modal">
+      <form method="dialog" class="modal-content">
+        <button class="modal-close" aria-label="Schließen">×</button><div class="modal-icon">✿</div><div class="eyebrow muted">EINE KLEINE ERINNERUNG</div><h2>So wächst Poppy</h2><p>Poppy zeigt spielerisch, wie es um deine tägliche Flüssigkeitszufuhr steht – ganz ohne Bewertung. Wenn du Getränke einträgst, blüht sie nach und nach auf. Erreichst du dein persönliches Tagesziel, ist sie in voller Blüte. Jeder neue Tag ist ein Neuanfang.</p><div class="info-callout">Dein Tagesziel dient nur zur Orientierung. Der Flüssigkeitsbedarf ist bei jedem Menschen anders.</div><button class="button-primary" value="close">Alles klar <span>→</span></button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/legal-consent.js"></script>
+  </body>
+</html>
